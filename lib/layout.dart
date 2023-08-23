@@ -14,24 +14,14 @@ class Layout extends StatelessWidget {
         width: width,
         child: Column(
           children: [
-            Container(
-              decoration: const BoxDecoration(color: Colors.amberAccent),
-              height: height * 0.15,
-              child: const Center(
-                child: Text(
-                  "switch button",
-                  style: TextStyle(fontSize: 20),
-                ),
-              ),
-            ),
             Expanded(child: child),
             Container(
               decoration: const BoxDecoration(color: Colors.blueAccent),
-              height: height * 0.15,
+              height: height * 0.10,
               child: const Center(
                 child: Text(
                   "Ads",
-                  style: TextStyle(fontSize: 20),
+                  style: TextStyle(fontSize: 50),
                 ),
               ),
             ),
