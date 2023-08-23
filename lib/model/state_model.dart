@@ -9,11 +9,12 @@ class StateModel with _$StateModel {
     @Default(0) int soundIndex,
     @Default(0) double volume,
     @Default(true) bool isStopwatch,
-    @Default(true) bool isStarted,
     @Default(0) int stopwatchHour,
     @Default(0) int stopwatchMinute,
     @Default(0) int stopwatchSecond,
     @Default(0) int timerHour,
     @Default(0) int timerMinute,
   }) = _StateModel;
+
+  StateModel reverseIsStopwatch() => copyWith(isStopwatch: !isStopwatch);
 }

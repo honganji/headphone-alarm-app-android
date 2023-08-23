@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:headphone_alarm_android_app/layout.dart';
-import 'package:headphone_alarm_android_app/screens/error.dart';
-import 'package:headphone_alarm_android_app/screens/stopwatch.dart';
-import 'package:headphone_alarm_android_app/screens/timer.dart';
+import 'package:headphone_alarm_android_app/view/screens/error.dart';
+import 'package:headphone_alarm_android_app/view/screens/stopwatch.dart';
+import 'package:headphone_alarm_android_app/view/screens/timer.dart';
 
 final GoRouter routes = GoRouter(
   initialLocation: "/stopwatch",
