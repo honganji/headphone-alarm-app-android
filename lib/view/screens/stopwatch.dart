@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:headphone_alarm_android_app/view/component/switch_button.dart';
 import 'package:headphone_alarm_android_app/view_model/state_view_model.dart';
 
 class Stopwatch extends ConsumerWidget {
@@ -30,29 +31,9 @@ class Stopwatch extends ConsumerWidget {
           SizedBox(
             height: height * 0.05,
           ),
-          ToggleButtons(
-            isSelected: [state.isStopwatch, !(state.isStopwatch)],
-            color: const Color(0X33000000),
-            fillColor: const Color(0X33000000),
-            selectedColor: Colors.black,
-            onPressed: (int newIndex) => stateNotifier.reverseIsStopwatch(),
-            children: [
-              Container(
-                decoration: const BoxDecoration(
-                  borderRadius: BorderRadius.all(
-                    Radius.circular(50),
-                  ),
-                ),
-                child: const Icon(
-                  Icons.timer,
-                  size: 40,
-                ),
-              ),
-              const Icon(
-                Icons.schedule,
-                size: 40,
-              ),
-            ],
+          SwitchButton(
+            isStopwatch: state.isStopwatch,
+            reverseFun: stateNotifier.reverseIsStopwatch,
           ),
           const Center(
             child: Text(
