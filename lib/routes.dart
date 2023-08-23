@@ -17,7 +17,7 @@ final GoRouter routes = GoRouter(
           pageBuilder: (context, state) {
             return CustomTransitionPage(
               key: state.pageKey,
-              child: const Stopwatch(),
+              child: const Stopwatch2(),
               transitionsBuilder:
                   (context, animation, secondaryAnimation, child) {
                 return FadeTransition(

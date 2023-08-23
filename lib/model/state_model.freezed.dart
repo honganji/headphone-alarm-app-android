@@ -19,7 +19,6 @@ mixin _$StateModel {
   int get soundIndex => throw _privateConstructorUsedError;
   double get volume => throw _privateConstructorUsedError;
   bool get isStopwatch => throw _privateConstructorUsedError;
-  bool get isStarted => throw _privateConstructorUsedError;
   int get stopwatchHour => throw _privateConstructorUsedError;
   int get stopwatchMinute => throw _privateConstructorUsedError;
   int get stopwatchSecond => throw _privateConstructorUsedError;
@@ -41,7 +40,6 @@ abstract class $StateModelCopyWith<$Res> {
       {int soundIndex,
       double volume,
       bool isStopwatch,
-      bool isStarted,
       int stopwatchHour,
       int stopwatchMinute,
       int stopwatchSecond,
@@ -65,7 +63,6 @@ class _$StateModelCopyWithImpl<$Res, $Val extends StateModel>
     Object? soundIndex = null,
     Object? volume = null,
     Object? isStopwatch = null,
-    Object? isStarted = null,
     Object? stopwatchHour = null,
     Object? stopwatchMinute = null,
     Object? stopwatchSecond = null,
@@ -84,10 +81,6 @@ class _$StateModelCopyWithImpl<$Res, $Val extends StateModel>
       isStopwatch: null == isStopwatch
           ? _value.isStopwatch
           : isStopwatch // ignore: cast_nullable_to_non_nullable
-              as bool,
-      isStarted: null == isStarted
-          ? _value.isStarted
-          : isStarted // ignore: cast_nullable_to_non_nullable
               as bool,
       stopwatchHour: null == stopwatchHour
           ? _value.stopwatchHour
@@ -125,7 +118,6 @@ abstract class _$$_StateModelCopyWith<$Res>
       {int soundIndex,
       double volume,
       bool isStopwatch,
-      bool isStarted,
       int stopwatchHour,
       int stopwatchMinute,
       int stopwatchSecond,
@@ -147,7 +139,6 @@ class __$$_StateModelCopyWithImpl<$Res>
     Object? soundIndex = null,
     Object? volume = null,
     Object? isStopwatch = null,
-    Object? isStarted = null,
     Object? stopwatchHour = null,
     Object? stopwatchMinute = null,
     Object? stopwatchSecond = null,
@@ -166,10 +157,6 @@ class __$$_StateModelCopyWithImpl<$Res>
       isStopwatch: null == isStopwatch
           ? _value.isStopwatch
           : isStopwatch // ignore: cast_nullable_to_non_nullable
-              as bool,
-      isStarted: null == isStarted
-          ? _value.isStarted
-          : isStarted // ignore: cast_nullable_to_non_nullable
               as bool,
       stopwatchHour: null == stopwatchHour
           ? _value.stopwatchHour
@@ -202,7 +189,6 @@ class _$_StateModel extends _StateModel {
       {this.soundIndex = 0,
       this.volume = 0,
       this.isStopwatch = true,
-      this.isStarted = true,
       this.stopwatchHour = 0,
       this.stopwatchMinute = 0,
       this.stopwatchSecond = 0,
@@ -221,9 +207,6 @@ class _$_StateModel extends _StateModel {
   final bool isStopwatch;
   @override
   @JsonKey()
-  final bool isStarted;
-  @override
-  @JsonKey()
   final int stopwatchHour;
   @override
   @JsonKey()
@@ -240,7 +223,7 @@ class _$_StateModel extends _StateModel {
 
   @override
   String toString() {
-    return 'StateModel(soundIndex: $soundIndex, volume: $volume, isStopwatch: $isStopwatch, isStarted: $isStarted, stopwatchHour: $stopwatchHour, stopwatchMinute: $stopwatchMinute, stopwatchSecond: $stopwatchSecond, timerHour: $timerHour, timerMinute: $timerMinute)';
+    return 'StateModel(soundIndex: $soundIndex, volume: $volume, isStopwatch: $isStopwatch, stopwatchHour: $stopwatchHour, stopwatchMinute: $stopwatchMinute, stopwatchSecond: $stopwatchSecond, timerHour: $timerHour, timerMinute: $timerMinute)';
   }
 
   @override
@@ -253,8 +236,6 @@ class _$_StateModel extends _StateModel {
             (identical(other.volume, volume) || other.volume == volume) &&
             (identical(other.isStopwatch, isStopwatch) ||
                 other.isStopwatch == isStopwatch) &&
-            (identical(other.isStarted, isStarted) ||
-                other.isStarted == isStarted) &&
             (identical(other.stopwatchHour, stopwatchHour) ||
                 other.stopwatchHour == stopwatchHour) &&
             (identical(other.stopwatchMinute, stopwatchMinute) ||
@@ -268,17 +249,8 @@ class _$_StateModel extends _StateModel {
   }
 
   @override
-  int get hashCode => Object.hash(
-      runtimeType,
-      soundIndex,
-      volume,
-      isStopwatch,
-      isStarted,
-      stopwatchHour,
-      stopwatchMinute,
-      stopwatchSecond,
-      timerHour,
-      timerMinute);
+  int get hashCode => Object.hash(runtimeType, soundIndex, volume, isStopwatch,
+      stopwatchHour, stopwatchMinute, stopwatchSecond, timerHour, timerMinute);
 
   @JsonKey(ignore: true)
   @override
@@ -292,7 +264,6 @@ abstract class _StateModel extends StateModel {
       {final int soundIndex,
       final double volume,
       final bool isStopwatch,
-      final bool isStarted,
       final int stopwatchHour,
       final int stopwatchMinute,
       final int stopwatchSecond,
@@ -306,8 +277,6 @@ abstract class _StateModel extends StateModel {
   double get volume;
   @override
   bool get isStopwatch;
-  @override
-  bool get isStarted;
   @override
   int get stopwatchHour;
   @override
