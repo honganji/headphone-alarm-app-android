@@ -11,4 +11,24 @@ class StateViewModel extends StateNotifier<StateModel> {
   void reverseIsStopwatch() {
     state = state.reverseIsStopwatch();
   }
+
+  void changeStopwatchHour(int num) {
+    state = state.changeStopwatchHour(num);
+  }
+
+  void changeStopwatchMinute(int num) {
+    state = state.changeStopwatchMinute(num);
+  }
+
+  void changeStopwatchSecond(int num) {
+    state = state.changeStopwatchSecond(num);
+  }
+
+  void changeTimerHour(int num) {
+    state = state.changeTimerHour(num);
+  }
+
+  void changeTimerMinute(int num) {
+    state = state.changeTimerMinute(num);
+  }
 }

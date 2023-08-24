@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:go_router/go_router.dart';
 import 'package:headphone_alarm_android_app/view/component/switch_button.dart';
+import 'package:headphone_alarm_android_app/view/component/time.dart';
 import 'package:headphone_alarm_android_app/view_model/state_view_model.dart';
 
 class Stopwatch extends ConsumerWidget {
@@ -34,6 +36,13 @@ class Stopwatch extends ConsumerWidget {
           SwitchButton(
             isStopwatch: state.isStopwatch,
             reverseFun: stateNotifier.reverseIsStopwatch,
+          ),
+          const StopwatchTime(),
+          ElevatedButton(
+            onPressed: () {
+              context.go("/timer");
+            },
+            child: const Text("Go to timer screen"),
           ),
           const Center(
             child: Text(
