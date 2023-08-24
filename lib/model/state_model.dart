@@ -17,4 +17,9 @@ class StateModel with _$StateModel {
   }) = _StateModel;
 
   StateModel reverseIsStopwatch() => copyWith(isStopwatch: !isStopwatch);
+  StateModel changeStopwatchHour(int num) => copyWith(stopwatchHour: num);
+  StateModel changeStopwatchMinute(int num) => copyWith(stopwatchMinute: num);
+  StateModel changeStopwatchSecond(int num) => copyWith(stopwatchSecond: num);
+  StateModel changeTimerHour(int num) => copyWith(timerHour: num);
+  StateModel changeTimerMinute(int num) => copyWith(timerMinute: num);
 }
