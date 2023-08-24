@@ -17,11 +17,11 @@ class SwitchButton extends StatelessWidget {
       children: const [
         Icon(
           Icons.timer,
-          size: 40,
+          size: 55,
         ),
         Icon(
           Icons.schedule,
-          size: 40,
+          size: 55,
         ),
       ],
     );
