@@ -29,8 +29,8 @@ class _TimeBlock2State extends State<TimeBlock> {
     final width = MediaQuery.of(context).size.width;
     return Container(
       alignment: Alignment.center,
-      height: height * 0.14,
-      width: width * 0.18,
+      height: height * 0.17,
+      width: width * 0.21,
       decoration: BoxDecoration(
         color: const Color(0xFFDEDEDE).withOpacity(0.2),
         borderRadius: const BorderRadius.all(
@@ -51,9 +51,9 @@ class _TimeBlock2State extends State<TimeBlock> {
         children: List.generate(
           widget.isHour ? 24 : 60,
           (index) => Text(
-            index.toString(),
+            index.toString().padLeft(2, "0"),
             style: const TextStyle(
-              fontSize: 22,
+              fontSize: 25,
             ),
           ),
         ),
