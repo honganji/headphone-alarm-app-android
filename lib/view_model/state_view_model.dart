@@ -31,4 +31,8 @@ class StateViewModel extends StateNotifier<StateModel> {
   void changeTimerMinute(int num) {
     state = state.changeTimerMinute(num);
   }
+
+  void changeSoundListIndex(int num) {
+    state = state.changeSoundListIndex(num);
+  }
 }
