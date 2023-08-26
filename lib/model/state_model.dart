@@ -9,6 +9,8 @@ class StateModel with _$StateModel {
     @Default(0) int soundListIndex,
     @Default(0) double volume,
     @Default(true) bool isStopwatch,
+    @Default(false) bool isStopwatchStart,
+    @Default(false) bool isTimerStart,
     @Default(0) int stopwatchHour,
     @Default(0) int stopwatchMinute,
     @Default(0) int stopwatchSecond,
@@ -23,4 +25,7 @@ class StateModel with _$StateModel {
   StateModel changeTimerHour(int num) => copyWith(timerHour: num);
   StateModel changeTimerMinute(int num) => copyWith(timerMinute: num);
   StateModel changeSoundListIndex(int index) => copyWith(soundListIndex: index);
+  StateModel reverseIsStopwatchStart() =>
+      copyWith(isStopwatchStart: !isStopwatchStart);
+  StateModel reverseIsTimerStart() => copyWith(isTimerStart: !isTimerStart);
 }

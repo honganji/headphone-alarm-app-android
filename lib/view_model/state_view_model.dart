@@ -35,4 +35,12 @@ class StateViewModel extends StateNotifier<StateModel> {
   void changeSoundListIndex(int num) {
     state = state.changeSoundListIndex(num);
   }
+
+  void reverseIsStopwatchStart() {
+    state = state.reverseIsStopwatchStart();
+  }
+
+  void reverseIsTimerStart() {
+    state = state.reverseIsTimerStart();
+  }
 }

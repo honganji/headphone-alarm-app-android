@@ -1,27 +1,17 @@
 import 'package:flutter/material.dart';
+import 'package:headphone_alarm_android_app/view/component/time_wheel.dart';
 
-class TimeBlock extends StatefulWidget {
+class TimeBlock extends StatelessWidget {
   const TimeBlock(
       {required this.isHour,
+      required this.isStart,
       required this.currentNum,
       required this.changeNumFun,
       super.key});
   final bool isHour;
+  final bool isStart;
   final int currentNum;
   final void Function(int) changeNumFun;
-
-  @override
-  State<TimeBlock> createState() => _TimeBlock2State();
-}
-
-class _TimeBlock2State extends State<TimeBlock> {
-  late FixedExtentScrollController _controller;
-
-  @override
-  void initState() {
-    super.initState();
-    _controller = FixedExtentScrollController(initialItem: widget.currentNum);
-  }
 
   @override
   Widget build(BuildContext context) {
@@ -35,27 +25,18 @@ class _TimeBlock2State extends State<TimeBlock> {
           Radius.circular(20),
         ),
       ),
-      child: ListWheelScrollView(
-        physics: const FixedExtentScrollPhysics(),
-        perspective: 0.01,
-        itemExtent: 30,
-        diameterRatio: 1.2,
-        useMagnifier: true,
-        magnification: 1.5,
-        onSelectedItemChanged: (index) {
-          widget.changeNumFun(index);
-        },
-        controller: _controller,
-        children: List.generate(
-          widget.isHour ? 24 : 60,
-          (index) => Text(
-            index.toString().padLeft(2, "0"),
-            style: const TextStyle(
-              fontSize: 26,
+      child: isStart
+          ? TimeWheel(
+              changeNumFun: changeNumFun,
+              isHour: isHour,
+              currentNum: currentNum,
+            )
+          : Text(
+              currentNum.toString().padLeft(2, "0"),
+              style: const TextStyle(
+                fontSize: 50,
+              ),
             ),
-          ),
-        ),
-      ),
     );
   }
 }
