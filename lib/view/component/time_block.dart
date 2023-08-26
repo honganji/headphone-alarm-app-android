@@ -25,7 +25,6 @@ class _TimeBlock2State extends State<TimeBlock> {
 
   @override
   Widget build(BuildContext context) {
-    final height = MediaQuery.of(context).size.height;
     final width = MediaQuery.of(context).size.width;
     return Container(
       alignment: Alignment.center,
@@ -40,7 +39,7 @@ class _TimeBlock2State extends State<TimeBlock> {
       child: ListWheelScrollView(
         physics: const FixedExtentScrollPhysics(),
         perspective: 0.01,
-        itemExtent: width * 0.07,
+        itemExtent: 30,
         diameterRatio: 1.2,
         useMagnifier: true,
         magnification: 1.5,
