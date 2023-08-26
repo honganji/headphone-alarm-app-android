@@ -21,6 +21,7 @@ class StopwatchTime extends ConsumerWidget {
             isHour: true,
             currentNum: state.stopwatchHour,
             changeNumFun: stateNotifier.changeStopwatchHour,
+            isStart: state.isStopwatchStart,
           ),
           const Text(
             ":",
@@ -33,6 +34,7 @@ class StopwatchTime extends ConsumerWidget {
             isHour: false,
             currentNum: state.stopwatchMinute,
             changeNumFun: stateNotifier.changeStopwatchMinute,
+            isStart: state.isStopwatchStart,
           ),
           const Text(
             ":",
@@ -45,6 +47,7 @@ class StopwatchTime extends ConsumerWidget {
             isHour: false,
             currentNum: state.stopwatchSecond,
             changeNumFun: stateNotifier.changeStopwatchSecond,
+            isStart: state.isStopwatchStart,
           ),
         ],
       ),
