@@ -21,8 +21,7 @@ final GoRouter routes = GoRouter(
               transitionsBuilder:
                   (context, animation, secondaryAnimation, child) {
                 return FadeTransition(
-                  opacity: CurveTween(curve: Curves.easeInOutCirc)
-                      .animate(animation),
+                  opacity: animation,
                   child: child,
                 );
               },
