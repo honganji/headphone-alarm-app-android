@@ -25,12 +25,10 @@ class _TimeBlock2State extends State<TimeBlock> {
 
   @override
   Widget build(BuildContext context) {
-    final height = MediaQuery.of(context).size.height;
-    final width = MediaQuery.of(context).size.width;
     return Container(
       alignment: Alignment.center,
-      height: height * 0.17,
-      width: width * 0.21,
+      height: 180,
+      width: 100,
       decoration: BoxDecoration(
         color: const Color(0xFFDEDEDE).withOpacity(0.2),
         borderRadius: const BorderRadius.all(
@@ -40,7 +38,7 @@ class _TimeBlock2State extends State<TimeBlock> {
       child: ListWheelScrollView(
         physics: const FixedExtentScrollPhysics(),
         perspective: 0.01,
-        itemExtent: width * 0.07,
+        itemExtent: 30,
         diameterRatio: 1.2,
         useMagnifier: true,
         magnification: 1.5,
@@ -53,7 +51,7 @@ class _TimeBlock2State extends State<TimeBlock> {
           (index) => Text(
             index.toString().padLeft(2, "0"),
             style: const TextStyle(
-              fontSize: 25,
+              fontSize: 26,
             ),
           ),
         ),

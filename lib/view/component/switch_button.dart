@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:go_router/go_router.dart';
 
 class SwitchButton extends StatelessWidget {
   const SwitchButton(
@@ -13,7 +14,17 @@ class SwitchButton extends StatelessWidget {
       color: const Color(0X33000000),
       fillColor: const Color(0X33000000),
       selectedColor: Colors.black,
-      onPressed: (int newIndex) => reverseFun(),
+      borderRadius: const BorderRadius.all(Radius.circular(20)),
+      onPressed: (int newIndex) {
+        if (newIndex == 0 && !isStopwatch) {
+          reverseFun();
+          context.go("/stopwatch");
+        } else if (newIndex == 1 && isStopwatch) {
+          reverseFun();
+          context.go("/timer");
+        }
+        return;
+      },
       children: const [
         Icon(
           Icons.timer,
