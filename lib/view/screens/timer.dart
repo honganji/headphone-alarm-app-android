@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
+import 'package:headphone_alarm_android_app/view/component/start_buton.dart';
+import 'package:headphone_alarm_android_app/view/component/timer_time.dart';
 import 'package:headphone_alarm_android_app/view_model/state_view_model.dart';
 
 class Timer extends ConsumerWidget {
@@ -9,21 +11,14 @@ class Timer extends ConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final state = ref.watch(stateViewModelProvider);
+    final stateNotifier = ref.watch(stateViewModelProvider.notifier);
     return Column(
       children: [
-        ElevatedButton(
-          onPressed: () {
-            context.go("/stopwatch");
-          },
-          child: const Text("Go to timer screen"),
+        TimerTime(),
+        const SizedBox(
+          height: 200,
         ),
-        const Center(
-          child: Text(
-            "Timer Screen",
-            style: TextStyle(fontSize: 40),
-          ),
-        ),
-        Text(state.stopwatchHour.toString())
+        StartButton(startFun: stateNotifier.reverseIsTimerStart),
       ],
     );
   }

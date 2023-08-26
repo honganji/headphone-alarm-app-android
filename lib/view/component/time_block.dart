@@ -16,27 +16,26 @@ class TimeBlock extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      alignment: Alignment.center,
-      height: 180,
-      width: 100,
-      decoration: BoxDecoration(
-        color: const Color(0xFFDEDEDE).withOpacity(0.2),
-        borderRadius: const BorderRadius.all(
-          Radius.circular(20),
+        alignment: Alignment.center,
+        height: 180,
+        width: 100,
+        decoration: BoxDecoration(
+          color: const Color(0xFFDEDEDE).withOpacity(0.2),
+          borderRadius: const BorderRadius.all(
+            Radius.circular(20),
+          ),
         ),
-      ),
-      child: isStart
-          ? TimeWheel(
-              changeNumFun: changeNumFun,
-              isHour: isHour,
-              currentNum: currentNum,
-            )
-          : Text(
-              currentNum.toString().padLeft(2, "0"),
-              style: const TextStyle(
-                fontSize: 50,
-              ),
-            ),
-    );
+        child: isStart
+            ? Text(
+                currentNum.toString().padLeft(2, "0"),
+                style: const TextStyle(
+                  fontSize: 50,
+                ),
+              )
+            : TimeWheel(
+                changeNumFun: changeNumFun,
+                isHour: isHour,
+                currentNum: currentNum,
+              ));
   }
 }
