@@ -25,7 +25,6 @@ class _TimeBlock2State extends State<TimeBlock> {
 
   @override
   Widget build(BuildContext context) {
-    final width = MediaQuery.of(context).size.width;
     return Container(
       alignment: Alignment.center,
       height: 180,

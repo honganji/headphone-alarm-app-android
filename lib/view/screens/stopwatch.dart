@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
 import 'package:headphone_alarm_android_app/view/component/sound.dart';
-import 'package:headphone_alarm_android_app/view/component/item_title.dart';
 import 'package:headphone_alarm_android_app/view/component/switch_button.dart';
 import 'package:headphone_alarm_android_app/view/component/time.dart';
 import 'package:headphone_alarm_android_app/view/component/volume.dart';
