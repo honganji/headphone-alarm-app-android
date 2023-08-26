@@ -29,8 +29,8 @@ class _TimeBlock2State extends State<TimeBlock> {
     final width = MediaQuery.of(context).size.width;
     return Container(
       alignment: Alignment.center,
-      height: height * 0.17,
-      width: width * 0.21,
+      height: 180,
+      width: 100,
       decoration: BoxDecoration(
         color: const Color(0xFFDEDEDE).withOpacity(0.2),
         borderRadius: const BorderRadius.all(
@@ -53,7 +53,7 @@ class _TimeBlock2State extends State<TimeBlock> {
           (index) => Text(
             index.toString().padLeft(2, "0"),
             style: const TextStyle(
-              fontSize: 25,
+              fontSize: 26,
             ),
           ),
         ),
