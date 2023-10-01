@@ -1,11 +1,13 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:headphone_alarm_android_app/view_model/state_view_model.dart';
 
-class StartButton extends StatelessWidget {
-  const StartButton({required this.startFun, super.key});
-  final void Function() startFun;
+class StartButton extends ConsumerWidget {
+  const StartButton({super.key});
 
   @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context, WidgetRef ref) {
+    final stateNotifier = ref.watch(stateViewModelProvider.notifier);
     return Container(
       decoration: const BoxDecoration(
           gradient: LinearGradient(
@@ -21,7 +23,7 @@ class StartButton extends StatelessWidget {
         children: [
           ElevatedButton(
             onPressed: () {
-              startFun();
+              stateNotifier.reverseIsTimerStart();
             },
             style: ElevatedButton.styleFrom(
               fixedSize: const Size(230, 90),

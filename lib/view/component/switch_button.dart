@@ -1,26 +1,27 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
+import 'package:headphone_alarm_android_app/view_model/state_view_model.dart';
 
-class SwitchButton extends StatelessWidget {
-  const SwitchButton(
-      {required this.isStopwatch, required this.reverseFun, super.key});
-  final bool isStopwatch;
-  final void Function() reverseFun;
+class SwitchButton extends ConsumerWidget {
+  const SwitchButton({super.key});
 
   @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context, WidgetRef ref) {
+    final state = ref.watch(stateViewModelProvider);
+    final stateNotifier = ref.watch(stateViewModelProvider.notifier);
     return ToggleButtons(
-      isSelected: [isStopwatch, !isStopwatch],
+      isSelected: [state.isStopwatch, !state.isStopwatch],
       color: const Color(0X33000000),
       fillColor: const Color(0X33000000),
       selectedColor: Colors.black,
       borderRadius: const BorderRadius.all(Radius.circular(20)),
       onPressed: (int newIndex) {
-        if (newIndex == 0 && !isStopwatch) {
-          reverseFun();
+        if (newIndex == 0 && !state.isStopwatch) {
+          stateNotifier.reverseIsStopwatch();
           context.go("/stopwatch");
-        } else if (newIndex == 1 && isStopwatch) {
-          reverseFun();
+        } else if (newIndex == 1 && state.isStopwatch) {
+          stateNotifier.reverseIsStopwatch();
           context.go("/timer");
         }
         return;
