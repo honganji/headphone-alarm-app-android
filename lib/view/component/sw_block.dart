@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:headphone_alarm_android_app/enum/stopwatch_state.dart';
 import 'package:headphone_alarm_android_app/enum/time_class.dart';
-import 'package:headphone_alarm_android_app/view/component/time_wheel.dart';
+import 'package:headphone_alarm_android_app/view/component/sw_wheel.dart';
 
 class SWBlock extends StatelessWidget {
   const SWBlock(
@@ -34,7 +34,7 @@ class SWBlock extends StatelessWidget {
                 fontSize: 50,
               ),
             )
-          : TimeWheel(
+          : SWWheel(
               time: time,
               initialNum: currentNum,
             ),

@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:headphone_alarm_android_app/enum/time_class.dart';
 import 'package:headphone_alarm_android_app/view/component/time_block.dart';
 import 'package:headphone_alarm_android_app/view_model/state_view_model.dart';
 
@@ -20,10 +21,10 @@ class TimerTime extends ConsumerWidget {
           const SizedBox(
             width: 0,
           ),
-          // TimeBlock(
-          //   currentNum: state.timerHour,
-          //   isStart: state.isTimerStart,
-          // ),
+          TimeBlock(
+            time: Time.hour,
+            currentNum: state.hour,
+          ),
           const Text(
             ":",
             style: TextStyle(
@@ -31,10 +32,10 @@ class TimerTime extends ConsumerWidget {
               fontSize: 30,
             ),
           ),
-          // TimeBlock(
-          //   currentNum: state.timerMinute,
-          //   isStart: state.,
-          // ),
+          TimeBlock(
+            time: Time.minute,
+            currentNum: state.minute,
+          ),
           const SizedBox(
             width: 0,
           ),

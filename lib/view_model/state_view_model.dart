@@ -49,75 +49,123 @@ class StateViewModel extends StateNotifier<StateModel> {
   }
 
   // New Methods
-  late Timer _timer;
+  late Timer _timerSW;
+  late Timer _timerTimer;
 
   int getSecond() {
-    return ((state.totalSeconds % 3600).round() % 60).floor();
+    return ((state.totalSWSeconds % 3600).round() % 60).floor();
   }
 
   int getMinute() {
-    return ((state.totalSeconds % 3600).round() / 60).floor();
+    return (((state.isSW ? state.totalSWSeconds : state.totalTimerSeconds) %
+                    3600)
+                .round() /
+            60)
+        .floor();
   }
 
   int getHour() {
-    return (state.totalSeconds / 3600).round();
+    return ((state.isSW ? state.totalSWSeconds : state.totalTimerSeconds) /
+            3600)
+        .round();
   }
 
   void startSW() {
-    _timer = Timer.periodic(
+    _timerSW = Timer.periodic(
       const Duration(seconds: 1),
       (Timer timer) {
-        if (state.swState == StopWatchState.start && state.totalSeconds > 0) {
-          setTotalSeconds(0, 0, state.totalSeconds - 1);
-          print(state.totalSeconds);
+        if (state.swState == StopWatchState.start && state.totalSWSeconds > 0) {
+          setTotalSWSeconds(0, 0, state.totalSWSeconds - 1);
         }
-        checkIfFinished();
+        checkIfSWFinished();
       },
     );
   }
 
-  void checkIfFinished() {
-    if (state.totalSeconds == 0) {
+  void startTimer() {
+    _timerTimer = Timer.periodic(
+      const Duration(seconds: 1),
+      (Timer timer) {
+        if (state.isTimerStart2 && state.totalTimerSeconds > 0) {
+          state = state.setTotalTimerSeconds(state.totalTimerSeconds - 1);
+        }
+        checkIfTimerFinished();
+      },
+    );
+  }
+
+  void checkIfSWFinished() {
+    if (state.totalSWSeconds == 0) {
       //TODO call alarm function and change swState
       manageSWState(StopWatchState.reset);
       print("The time has come");
-      _timer.cancel();
+      _timerSW.cancel();
+    }
+  }
+
+  void checkIfTimerFinished() {
+    if (state.totalTimerSeconds == 0) {
+      //TODO call alarm function and change swState
+      manageTimerState(false);
+      print("The time has come");
+      _timerTimer.cancel();
     }
   }
 
   void stopSW() {
     if (state.swState == StopWatchState.stop) {
-      _timer.cancel();
+      _timerSW.cancel();
     }
   }
 
-  void setTotalSeconds(int hour, int minute, int second) {
-    int totalSeconds = hour * 3600 + minute * 60 + second;
-    state = state.setTotalSeconds(totalSeconds);
+  void stopTimer() {
+    if (!state.isTimerStart2) {
+      _timerTimer.cancel();
+    }
+  }
+
+  void setTotalSWSeconds(int hour, int minute, int second) {
+    int totalSWSeconds = hour * 3600 + minute * 60 + second;
+    state = state.setTotalSWSeconds(totalSWSeconds);
+  }
+
+  void setTotalTimerSeconds() {
+    int targetTotalTimerSecond = state.hour * 3600 + state.minute * 60;
+    DateTime now = DateTime.now();
+    int presentHour = now.hour;
+    int presentMinute = now.minute;
+    int presentSecond = now.second;
+    int presentTotalTimerSecond =
+        presentHour * 3600 + presentMinute * 60 + presentSecond;
+    int totalTimerSecond = targetTotalTimerSecond - presentTotalTimerSecond;
+    state = state.setTotalTimerSeconds(totalTimerSecond);
   }
 
   void manageSWState(StopWatchState swState) {
     state = state.manageSWState(swState);
   }
 
-  void setTimer(int hour, int minute) {
-    state.setTimer(hour);
-    state.setMinute(minute);
+  void setHour(int hour) {
+    state = state.setHour(hour);
+  }
+
+  void setMinute(int minute) {
+    state = state.setMinute(minute);
   }
 
   void manageTimerState(bool isTimerStart2) {
-    state.manageTimerState(isTimerStart2);
+    state = state.manageTimerState(isTimerStart2);
   }
 
   void setSoundIndex(int index) {
-    state.setVolume(index);
+    state = state.setVolume(index);
   }
 
   void setVolume(int volume2) {
-    state.setVolume(volume2);
+    state = state.setVolume(volume2);
   }
 
   void switchIsSW(bool isSW) {
-    state.switchIsSW(isSW);
+    state = state.switchIsSW(isSW);
   }
 }

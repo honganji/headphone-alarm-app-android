@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:headphone_alarm_android_app/view/component/start_buton.dart';
+import 'package:headphone_alarm_android_app/view/component/start_button.dart';
 import 'package:headphone_alarm_android_app/view/component/timer_time.dart';
 
 class Timer extends ConsumerWidget {

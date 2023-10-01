@@ -22,12 +22,13 @@ class StateModel with _$StateModel {
     // new variables
     // For SW
     @Default(StopWatchState.reset) StopWatchState swState,
-    @Default(0) int totalSeconds,
+    @Default(0) int totalSWSeconds,
 
     // For timer
     @Default(false) bool isTimerStart2,
-    @Default(0) int hours,
-    @Default(0) int minutes,
+    @Default(0) int hour,
+    @Default(0) int minute,
+    @Default(0) int totalTimerSeconds,
 
     // For General
     @Default(0) int index,
@@ -48,15 +49,18 @@ class StateModel with _$StateModel {
   StateModel reverseIsTimerStart() => copyWith(isTimerStart: !isTimerStart);
 
   // new method
-  StateModel setTotalSeconds(int totalSeconds) =>
-      copyWith(totalSeconds: totalSeconds);
+  StateModel setTotalSWSeconds(int totalSWSeconds) =>
+      copyWith(totalSWSeconds: totalSWSeconds);
+
+  StateModel setTotalTimerSeconds(int totalTimerSeconds) =>
+      copyWith(totalTimerSeconds: totalTimerSeconds);
 
   StateModel manageSWState(StopWatchState swState) =>
       copyWith(swState: swState);
 
-  StateModel setTimer(int hour) => copyWith(hours: hour);
+  StateModel setHour(int hour) => copyWith(hour: hour);
 
-  StateModel setMinute(int minute) => copyWith(minutes: minute);
+  StateModel setMinute(int minute) => copyWith(minute: minute);
 
   StateModel manageTimerState(bool isTimerStart2) =>
       copyWith(isTimerStart2: isTimerStart2);

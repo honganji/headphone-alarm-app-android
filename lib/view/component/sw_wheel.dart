@@ -3,16 +3,16 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:headphone_alarm_android_app/enum/time_class.dart';
 import 'package:headphone_alarm_android_app/view_model/state_view_model.dart';
 
-class TimeWheel extends ConsumerStatefulWidget {
-  const TimeWheel({required this.time, required this.initialNum, super.key});
+class SWWheel extends ConsumerStatefulWidget {
+  const SWWheel({required this.time, required this.initialNum, super.key});
   final Time time;
   final int initialNum;
 
   @override
-  ConsumerState<TimeWheel> createState() => _TimeWheelState();
+  ConsumerState<SWWheel> createState() => _SWWheelState();
 }
 
-class _TimeWheelState extends ConsumerState<TimeWheel> {
+class _SWWheelState extends ConsumerState<SWWheel> {
   late FixedExtentScrollController _controller;
 
   @override
@@ -32,10 +32,17 @@ class _TimeWheelState extends ConsumerState<TimeWheel> {
       useMagnifier: true,
       magnification: 1.5,
       onSelectedItemChanged: (index) {
-        widget.time == Time.hour
-            ? stateNotifier.setHour(index)
-            : stateNotifier.setMinute(index);
-        stateNotifier.setTotalTimerSeconds();
+        switch (widget.time) {
+          case Time.hour:
+            stateNotifier.setTotalSWSeconds(
+                index, stateNotifier.getMinute(), stateNotifier.getSecond());
+          case Time.minute:
+            stateNotifier.setTotalSWSeconds(
+                stateNotifier.getHour(), index, stateNotifier.getSecond());
+          case Time.second:
+            stateNotifier.setTotalSWSeconds(
+                stateNotifier.getHour(), stateNotifier.getMinute(), index);
+        }
       },
       controller: _controller,
       children: List.generate(

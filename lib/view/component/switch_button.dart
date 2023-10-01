@@ -11,20 +11,19 @@ class SwitchButton extends ConsumerWidget {
     final state = ref.watch(stateViewModelProvider);
     final stateNotifier = ref.watch(stateViewModelProvider.notifier);
     return ToggleButtons(
-      isSelected: [state.isStopwatch, !state.isStopwatch],
+      isSelected: [state.isSW, !state.isSW],
       color: const Color(0X33000000),
       fillColor: const Color(0X33000000),
       selectedColor: Colors.black,
       borderRadius: const BorderRadius.all(Radius.circular(20)),
       onPressed: (int newIndex) {
-        if (newIndex == 0 && !state.isStopwatch) {
-          stateNotifier.reverseIsStopwatch();
+        if (newIndex == 0 && !state.isSW) {
+          stateNotifier.switchIsSW(true);
           context.go("/stopwatch");
-        } else if (newIndex == 1 && state.isStopwatch) {
-          stateNotifier.reverseIsStopwatch();
+        } else if (newIndex == 1 && state.isSW) {
+          stateNotifier.switchIsSW(false);
           context.go("/timer");
         }
-        return;
       },
       children: const [
         Icon(

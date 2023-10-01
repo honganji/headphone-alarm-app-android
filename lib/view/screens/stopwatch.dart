@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:headphone_alarm_android_app/view/component/start_buton.dart';
+import 'package:headphone_alarm_android_app/view/component/start_button.dart';
 import 'package:headphone_alarm_android_app/view/component/stopwatch_time.dart';
 
 class Stopwatch extends ConsumerWidget {

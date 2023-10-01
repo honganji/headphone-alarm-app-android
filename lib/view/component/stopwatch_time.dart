@@ -21,7 +21,7 @@ class StopwatchTime extends ConsumerWidget {
           SWBlock(
             time: Time.hour,
             currentNum: stateNotifier.getHour(),
-            changeNumFun: stateNotifier.setTotalSeconds,
+            changeNumFun: stateNotifier.setTotalSWSeconds,
             isStart: state.swState,
           ),
           const Text(
@@ -34,7 +34,7 @@ class StopwatchTime extends ConsumerWidget {
           SWBlock(
             time: Time.minute,
             currentNum: stateNotifier.getMinute(),
-            changeNumFun: stateNotifier.setTotalSeconds,
+            changeNumFun: stateNotifier.setTotalSWSeconds,
             isStart: state.swState,
           ),
           const Text(
@@ -47,7 +47,7 @@ class StopwatchTime extends ConsumerWidget {
           SWBlock(
             time: Time.second,
             currentNum: stateNotifier.getSecond(),
-            changeNumFun: stateNotifier.setTotalSeconds,
+            changeNumFun: stateNotifier.setTotalSWSeconds,
             isStart: state.swState,
           ),
         ],
