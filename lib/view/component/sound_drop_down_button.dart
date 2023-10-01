@@ -11,7 +11,7 @@ class SoundDropDownButton extends ConsumerWidget {
     final state = ref.watch(stateViewModelProvider);
     final stateNotifier = ref.watch(stateViewModelProvider.notifier);
     return DropdownButton<String>(
-      value: soundList[state.soundListIndex],
+      value: soundList[state.index],
       icon: const Icon(Icons.arrow_drop_down_outlined),
       items: soundList.map<DropdownMenuItem<String>>((String value) {
         return DropdownMenuItem<String>(
@@ -20,7 +20,8 @@ class SoundDropDownButton extends ConsumerWidget {
         );
       }).toList(),
       onChanged: (String? value) {
-        stateNotifier.changeSoundListIndex(soundList.indexOf(value ?? soundList.first));
+        stateNotifier
+            .setSoundIndex(soundList.indexOf(value ?? soundList.first));
       },
     );
   }

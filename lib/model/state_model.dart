@@ -7,19 +7,6 @@ part "state_model.freezed.dart";
 class StateModel with _$StateModel {
   const StateModel._();
   const factory StateModel({
-    // former methods
-    @Default(0) int soundListIndex,
-    @Default(0) double volume,
-    @Default(true) bool isStopwatch,
-    @Default(false) bool isStopwatchStart,
-    @Default(false) bool isTimerStart,
-    @Default(0) int stopwatchHour,
-    @Default(0) int stopwatchMinute,
-    @Default(0) int stopwatchSecond,
-    @Default(0) int timerHour,
-    @Default(0) int timerMinute,
-
-    // new variables
     // For SW
     @Default(StopWatchState.reset) StopWatchState swState,
     @Default(0) int totalSWSeconds,
@@ -36,19 +23,7 @@ class StateModel with _$StateModel {
     @Default(true) bool isSW,
   }) = _StateModel;
 
-  // former method
-  StateModel reverseIsStopwatch() => copyWith(isStopwatch: !isStopwatch);
-  StateModel changeStopwatchHour(int num) => copyWith(stopwatchHour: num);
-  StateModel changeStopwatchMinute(int num) => copyWith(stopwatchMinute: num);
-  StateModel changeStopwatchSecond(int num) => copyWith(stopwatchSecond: num);
-  StateModel changeTimerHour(int num) => copyWith(timerHour: num);
-  StateModel changeTimerMinute(int num) => copyWith(timerMinute: num);
-  StateModel changeSoundListIndex(int index) => copyWith(soundListIndex: index);
-  StateModel reverseIsStopwatchStart() =>
-      copyWith(isStopwatchStart: !isStopwatchStart);
-  StateModel reverseIsTimerStart() => copyWith(isTimerStart: !isTimerStart);
-
-  // new method
+  // Methods
   StateModel setTotalSWSeconds(int totalSWSeconds) =>
       copyWith(totalSWSeconds: totalSWSeconds);
 

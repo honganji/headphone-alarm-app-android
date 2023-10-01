@@ -10,7 +10,7 @@ class TimerTime extends ConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final state = ref.watch(stateViewModelProvider);
-    final stateNotifier = ref.watch(stateViewModelProvider.notifier);
+
     final width = MediaQuery.of(context).size.width;
     return Container(
       padding: const EdgeInsets.only(top: 20, bottom: 60),
