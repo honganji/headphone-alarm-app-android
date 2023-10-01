@@ -3,15 +3,17 @@ import 'package:headphone_alarm_android_app/enum/stopwatch_state.dart';
 import 'package:headphone_alarm_android_app/enum/time_class.dart';
 import 'package:headphone_alarm_android_app/view/component/time_wheel.dart';
 
-class TimeBlock extends StatelessWidget {
-  const TimeBlock(
+class SWBlock extends StatelessWidget {
+  const SWBlock(
       {required this.time,
       required this.isStart,
       required this.currentNum,
+      required this.changeNumFun,
       super.key});
   final Time time;
   final StopWatchState isStart;
   final int currentNum;
+  final void Function(int, int, int) changeNumFun;
 
   @override
   Widget build(BuildContext context) {
@@ -25,7 +27,7 @@ class TimeBlock extends StatelessWidget {
           Radius.circular(20),
         ),
       ),
-      child: isStart == StopWatchState.start
+      child: isStart == StopWatchState.start || isStart == StopWatchState.stop
           ? Text(
               currentNum.toString().padLeft(2, "0"),
               style: const TextStyle(

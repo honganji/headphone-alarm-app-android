@@ -20,12 +20,10 @@ class TimerTime extends ConsumerWidget {
           const SizedBox(
             width: 0,
           ),
-          TimeBlock(
-            isHour: true,
-            currentNum: state.timerHour,
-            changeNumFun: stateNotifier.changeTimerHour,
-            isStart: state.isTimerStart,
-          ),
+          // TimeBlock(
+          //   currentNum: state.timerHour,
+          //   isStart: state.isTimerStart,
+          // ),
           const Text(
             ":",
             style: TextStyle(
@@ -33,12 +31,10 @@ class TimerTime extends ConsumerWidget {
               fontSize: 30,
             ),
           ),
-          TimeBlock(
-            isHour: false,
-            currentNum: state.timerMinute,
-            changeNumFun: stateNotifier.changeTimerMinute,
-            isStart: state.isTimerStart,
-          ),
+          // TimeBlock(
+          //   currentNum: state.timerMinute,
+          //   isStart: state.,
+          // ),
           const SizedBox(
             width: 0,
           ),

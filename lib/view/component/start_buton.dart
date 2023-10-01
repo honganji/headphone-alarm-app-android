@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:headphone_alarm_android_app/enum/stopwatch_state.dart';
 import 'package:headphone_alarm_android_app/view_model/state_view_model.dart';
 
 class StartButton extends ConsumerWidget {
@@ -7,6 +8,7 @@ class StartButton extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
+    final state = ref.watch(stateViewModelProvider);
     final stateNotifier = ref.watch(stateViewModelProvider.notifier);
     return Container(
       decoration: const BoxDecoration(
@@ -23,7 +25,19 @@ class StartButton extends ConsumerWidget {
         children: [
           ElevatedButton(
             onPressed: () {
-              stateNotifier.reverseIsTimerStart();
+              if (state.totalSeconds == 0) {
+                ScaffoldMessenger.of(context).showSnackBar(const SnackBar(
+                  content: Text("Set the time"),
+                ));
+                return;
+              }
+              if (state.swState == StopWatchState.start) {
+                stateNotifier.manageSWState(StopWatchState.stop);
+                stateNotifier.stopSW();
+              } else {
+                stateNotifier.manageSWState(StopWatchState.start);
+                stateNotifier.startSW();
+              }
             },
             style: ElevatedButton.styleFrom(
               fixedSize: const Size(230, 90),
@@ -32,9 +46,9 @@ class StartButton extends ConsumerWidget {
               shape: const RoundedRectangleBorder(
                   borderRadius: BorderRadius.all(Radius.circular(50))),
             ),
-            child: const Text(
-              "Start",
-              style: TextStyle(
+            child: Text(
+              state.swState == StopWatchState.start ? "Stop" : "Start",
+              style: const TextStyle(
                   fontSize: 40, letterSpacing: 3.0, color: Colors.black),
             ),
           ),

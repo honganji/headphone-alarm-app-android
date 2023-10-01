@@ -49,38 +49,55 @@ class StateViewModel extends StateNotifier<StateModel> {
   }
 
   // New Methods
+  late Timer _timer;
+
   int getSecond() {
-    return ((state.totalSeconds % 3600).round() % 60).round();
+    return ((state.totalSeconds % 3600).round() % 60).floor();
   }
 
   int getMinute() {
-    return (state.totalSeconds / 3600).round();
+    return ((state.totalSeconds % 3600).round() / 60).floor();
   }
 
   int getHour() {
-    return ((state.totalSeconds % 3600).round() / 60).round();
+    return (state.totalSeconds / 3600).round();
   }
 
-  void manageSW() {
-    Timer.periodic(
+  void startSW() {
+    _timer = Timer.periodic(
       const Duration(seconds: 1),
       (Timer timer) {
-        if (state.swState == StopWatchState.start) {
-          setTotalSeconds(state.totalSeconds + 1);
-        } else {
-          timer.cancel();
+        if (state.swState == StopWatchState.start && state.totalSeconds > 0) {
+          setTotalSeconds(0, 0, state.totalSeconds - 1);
+          print(state.totalSeconds);
         }
-        print(state.swState);
+        checkIfFinished();
       },
     );
   }
 
-  void setTotalSeconds(int totalSeconds) {
-    state.setTotalSeconds(totalSeconds);
+  void checkIfFinished() {
+    if (state.totalSeconds == 0) {
+      //TODO call alarm function and change swState
+      manageSWState(StopWatchState.reset);
+      print("The time has come");
+      _timer.cancel();
+    }
+  }
+
+  void stopSW() {
+    if (state.swState == StopWatchState.stop) {
+      _timer.cancel();
+    }
+  }
+
+  void setTotalSeconds(int hour, int minute, int second) {
+    int totalSeconds = hour * 3600 + minute * 60 + second;
+    state = state.setTotalSeconds(totalSeconds);
   }
 
   void manageSWState(StopWatchState swState) {
-    state.manageSWState(swState);
+    state = state.manageSWState(swState);
   }
 
   void setTimer(int hour, int minute) {

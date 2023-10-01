@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:headphone_alarm_android_app/view/component/time_block.dart';
+import 'package:headphone_alarm_android_app/enum/time_class.dart';
+import 'package:headphone_alarm_android_app/view/component/sw_block.dart';
 import 'package:headphone_alarm_android_app/view_model/state_view_model.dart';
 
 class StopwatchTime extends ConsumerWidget {
@@ -17,11 +18,11 @@ class StopwatchTime extends ConsumerWidget {
       child: Row(
         mainAxisAlignment: MainAxisAlignment.spaceEvenly,
         children: [
-          TimeBlock(
-            isHour: true,
-            currentNum: state.stopwatchHour,
-            changeNumFun: stateNotifier.changeStopwatchHour,
-            isStart: state.isStopwatchStart,
+          SWBlock(
+            time: Time.hour,
+            currentNum: stateNotifier.getHour(),
+            changeNumFun: stateNotifier.setTotalSeconds,
+            isStart: state.swState,
           ),
           const Text(
             ":",
@@ -30,11 +31,11 @@ class StopwatchTime extends ConsumerWidget {
               fontSize: 30,
             ),
           ),
-          TimeBlock(
-            isHour: false,
-            currentNum: state.stopwatchMinute,
-            changeNumFun: stateNotifier.changeStopwatchMinute,
-            isStart: state.isStopwatchStart,
+          SWBlock(
+            time: Time.minute,
+            currentNum: stateNotifier.getMinute(),
+            changeNumFun: stateNotifier.setTotalSeconds,
+            isStart: state.swState,
           ),
           const Text(
             ":",
@@ -43,11 +44,11 @@ class StopwatchTime extends ConsumerWidget {
               fontSize: 30,
             ),
           ),
-          TimeBlock(
-            isHour: false,
-            currentNum: state.stopwatchSecond,
-            changeNumFun: stateNotifier.changeStopwatchSecond,
-            isStart: state.isStopwatchStart,
+          SWBlock(
+            time: Time.second,
+            currentNum: stateNotifier.getSecond(),
+            changeNumFun: stateNotifier.setTotalSeconds,
+            isStart: state.swState,
           ),
         ],
       ),
