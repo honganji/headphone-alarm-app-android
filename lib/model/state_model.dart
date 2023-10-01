@@ -1,4 +1,5 @@
 import 'package:freezed_annotation/freezed_annotation.dart';
+import 'package:headphone_alarm_android_app/enum/stopwatch_state.dart';
 
 part "state_model.freezed.dart";
 
@@ -16,6 +17,21 @@ class StateModel with _$StateModel {
     @Default(0) int stopwatchSecond,
     @Default(0) int timerHour,
     @Default(0) int timerMinute,
+    // new variables
+
+    // For SW
+    @Default(StopWatchState.reset) StopWatchState isSWStart,
+    @Default(0) int totalSeconds,
+
+    // For timer
+    @Default(false) bool isTimerStart2,
+    @Default(0) int hours,
+    @Default(0) int minutes,
+
+    // For General
+    @Default(0) int index,
+    @Default(0) int volume2,
+    @Default(0) int soundIndex,
   }) = _StateModel;
 
   StateModel reverseIsStopwatch() => copyWith(isStopwatch: !isStopwatch);
