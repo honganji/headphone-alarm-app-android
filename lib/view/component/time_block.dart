@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:headphone_alarm_android_app/enum/time_class.dart';
+import 'package:headphone_alarm_android_app/enum/timer_state.dart';
 import 'package:headphone_alarm_android_app/view/component/time_wheel.dart';
 import 'package:headphone_alarm_android_app/view_model/state_view_model.dart';
 
@@ -22,7 +23,7 @@ class TimeBlock extends ConsumerWidget {
           Radius.circular(20),
         ),
       ),
-      child: state.isTimerStart2
+      child: state.timerState == TimerState.start
           ? Text(
               currentNum.toString().padLeft(2, "0"),
               style: const TextStyle(

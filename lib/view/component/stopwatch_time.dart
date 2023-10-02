@@ -9,7 +9,6 @@ class StopwatchTime extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    final state = ref.watch(stateViewModelProvider);
     final stateNotifier = ref.watch(stateViewModelProvider.notifier);
     final width = MediaQuery.of(context).size.width;
     return Container(
@@ -20,9 +19,7 @@ class StopwatchTime extends ConsumerWidget {
         children: [
           SWBlock(
             time: Time.hour,
-            currentNum: stateNotifier.getHour(),
-            changeNumFun: stateNotifier.setTotalSWSeconds,
-            isStart: state.swState,
+            initialValue: stateNotifier.getHour(),
           ),
           const Text(
             ":",
@@ -33,9 +30,7 @@ class StopwatchTime extends ConsumerWidget {
           ),
           SWBlock(
             time: Time.minute,
-            currentNum: stateNotifier.getMinute(),
-            changeNumFun: stateNotifier.setTotalSWSeconds,
-            isStart: state.swState,
+            initialValue: stateNotifier.getMinute(),
           ),
           const Text(
             ":",
@@ -46,9 +41,7 @@ class StopwatchTime extends ConsumerWidget {
           ),
           SWBlock(
             time: Time.second,
-            currentNum: stateNotifier.getSecond(),
-            changeNumFun: stateNotifier.setTotalSWSeconds,
-            isStart: state.swState,
+            initialValue: stateNotifier.getSecond(),
           ),
         ],
       ),

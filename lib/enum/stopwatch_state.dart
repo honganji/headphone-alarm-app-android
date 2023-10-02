@@ -1,1 +1,1 @@
-enum StopWatchState { start, stop, reset }
+enum StopWatchState { reset, start, stop, ringing }

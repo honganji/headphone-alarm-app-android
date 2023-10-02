@@ -19,13 +19,13 @@ mixin _$StateModel {
 // For SW
   StopWatchState get swState => throw _privateConstructorUsedError;
   int get totalSWSeconds => throw _privateConstructorUsedError; // For timer
-  bool get isTimerStart2 => throw _privateConstructorUsedError;
+  TimerState get timerState => throw _privateConstructorUsedError;
   int get hour => throw _privateConstructorUsedError;
   int get minute => throw _privateConstructorUsedError;
   int get totalTimerSeconds =>
       throw _privateConstructorUsedError; // For General
   int get index => throw _privateConstructorUsedError;
-  int get volume2 => throw _privateConstructorUsedError;
+  int get volume => throw _privateConstructorUsedError;
   bool get isSW => throw _privateConstructorUsedError;
 
   @JsonKey(ignore: true)
@@ -42,12 +42,12 @@ abstract class $StateModelCopyWith<$Res> {
   $Res call(
       {StopWatchState swState,
       int totalSWSeconds,
-      bool isTimerStart2,
+      TimerState timerState,
       int hour,
       int minute,
       int totalTimerSeconds,
       int index,
-      int volume2,
+      int volume,
       bool isSW});
 }
 
@@ -66,12 +66,12 @@ class _$StateModelCopyWithImpl<$Res, $Val extends StateModel>
   $Res call({
     Object? swState = null,
     Object? totalSWSeconds = null,
-    Object? isTimerStart2 = null,
+    Object? timerState = null,
     Object? hour = null,
     Object? minute = null,
     Object? totalTimerSeconds = null,
     Object? index = null,
-    Object? volume2 = null,
+    Object? volume = null,
     Object? isSW = null,
   }) {
     return _then(_value.copyWith(
@@ -83,10 +83,10 @@ class _$StateModelCopyWithImpl<$Res, $Val extends StateModel>
           ? _value.totalSWSeconds
           : totalSWSeconds // ignore: cast_nullable_to_non_nullable
               as int,
-      isTimerStart2: null == isTimerStart2
-          ? _value.isTimerStart2
-          : isTimerStart2 // ignore: cast_nullable_to_non_nullable
-              as bool,
+      timerState: null == timerState
+          ? _value.timerState
+          : timerState // ignore: cast_nullable_to_non_nullable
+              as TimerState,
       hour: null == hour
           ? _value.hour
           : hour // ignore: cast_nullable_to_non_nullable
@@ -103,9 +103,9 @@ class _$StateModelCopyWithImpl<$Res, $Val extends StateModel>
           ? _value.index
           : index // ignore: cast_nullable_to_non_nullable
               as int,
-      volume2: null == volume2
-          ? _value.volume2
-          : volume2 // ignore: cast_nullable_to_non_nullable
+      volume: null == volume
+          ? _value.volume
+          : volume // ignore: cast_nullable_to_non_nullable
               as int,
       isSW: null == isSW
           ? _value.isSW
@@ -126,12 +126,12 @@ abstract class _$$_StateModelCopyWith<$Res>
   $Res call(
       {StopWatchState swState,
       int totalSWSeconds,
-      bool isTimerStart2,
+      TimerState timerState,
       int hour,
       int minute,
       int totalTimerSeconds,
       int index,
-      int volume2,
+      int volume,
       bool isSW});
 }
 
@@ -148,12 +148,12 @@ class __$$_StateModelCopyWithImpl<$Res>
   $Res call({
     Object? swState = null,
     Object? totalSWSeconds = null,
-    Object? isTimerStart2 = null,
+    Object? timerState = null,
     Object? hour = null,
     Object? minute = null,
     Object? totalTimerSeconds = null,
     Object? index = null,
-    Object? volume2 = null,
+    Object? volume = null,
     Object? isSW = null,
   }) {
     return _then(_$_StateModel(
@@ -165,10 +165,10 @@ class __$$_StateModelCopyWithImpl<$Res>
           ? _value.totalSWSeconds
           : totalSWSeconds // ignore: cast_nullable_to_non_nullable
               as int,
-      isTimerStart2: null == isTimerStart2
-          ? _value.isTimerStart2
-          : isTimerStart2 // ignore: cast_nullable_to_non_nullable
-              as bool,
+      timerState: null == timerState
+          ? _value.timerState
+          : timerState // ignore: cast_nullable_to_non_nullable
+              as TimerState,
       hour: null == hour
           ? _value.hour
           : hour // ignore: cast_nullable_to_non_nullable
@@ -185,9 +185,9 @@ class __$$_StateModelCopyWithImpl<$Res>
           ? _value.index
           : index // ignore: cast_nullable_to_non_nullable
               as int,
-      volume2: null == volume2
-          ? _value.volume2
-          : volume2 // ignore: cast_nullable_to_non_nullable
+      volume: null == volume
+          ? _value.volume
+          : volume // ignore: cast_nullable_to_non_nullable
               as int,
       isSW: null == isSW
           ? _value.isSW
@@ -203,12 +203,12 @@ class _$_StateModel extends _StateModel {
   const _$_StateModel(
       {this.swState = StopWatchState.reset,
       this.totalSWSeconds = 0,
-      this.isTimerStart2 = false,
+      this.timerState = TimerState.stop,
       this.hour = 0,
       this.minute = 0,
       this.totalTimerSeconds = 0,
       this.index = 0,
-      this.volume2 = 0,
+      this.volume = 0,
       this.isSW = true})
       : super._();
 
@@ -222,7 +222,7 @@ class _$_StateModel extends _StateModel {
 // For timer
   @override
   @JsonKey()
-  final bool isTimerStart2;
+  final TimerState timerState;
   @override
   @JsonKey()
   final int hour;
@@ -238,14 +238,14 @@ class _$_StateModel extends _StateModel {
   final int index;
   @override
   @JsonKey()
-  final int volume2;
+  final int volume;
   @override
   @JsonKey()
   final bool isSW;
 
   @override
   String toString() {
-    return 'StateModel(swState: $swState, totalSWSeconds: $totalSWSeconds, isTimerStart2: $isTimerStart2, hour: $hour, minute: $minute, totalTimerSeconds: $totalTimerSeconds, index: $index, volume2: $volume2, isSW: $isSW)';
+    return 'StateModel(swState: $swState, totalSWSeconds: $totalSWSeconds, timerState: $timerState, hour: $hour, minute: $minute, totalTimerSeconds: $totalTimerSeconds, index: $index, volume: $volume, isSW: $isSW)';
   }
 
   @override
@@ -256,20 +256,20 @@ class _$_StateModel extends _StateModel {
             (identical(other.swState, swState) || other.swState == swState) &&
             (identical(other.totalSWSeconds, totalSWSeconds) ||
                 other.totalSWSeconds == totalSWSeconds) &&
-            (identical(other.isTimerStart2, isTimerStart2) ||
-                other.isTimerStart2 == isTimerStart2) &&
+            (identical(other.timerState, timerState) ||
+                other.timerState == timerState) &&
             (identical(other.hour, hour) || other.hour == hour) &&
             (identical(other.minute, minute) || other.minute == minute) &&
             (identical(other.totalTimerSeconds, totalTimerSeconds) ||
                 other.totalTimerSeconds == totalTimerSeconds) &&
             (identical(other.index, index) || other.index == index) &&
-            (identical(other.volume2, volume2) || other.volume2 == volume2) &&
+            (identical(other.volume, volume) || other.volume == volume) &&
             (identical(other.isSW, isSW) || other.isSW == isSW));
   }
 
   @override
   int get hashCode => Object.hash(runtimeType, swState, totalSWSeconds,
-      isTimerStart2, hour, minute, totalTimerSeconds, index, volume2, isSW);
+      timerState, hour, minute, totalTimerSeconds, index, volume, isSW);
 
   @JsonKey(ignore: true)
   @override
@@ -282,12 +282,12 @@ abstract class _StateModel extends StateModel {
   const factory _StateModel(
       {final StopWatchState swState,
       final int totalSWSeconds,
-      final bool isTimerStart2,
+      final TimerState timerState,
       final int hour,
       final int minute,
       final int totalTimerSeconds,
       final int index,
-      final int volume2,
+      final int volume,
       final bool isSW}) = _$_StateModel;
   const _StateModel._() : super._();
 
@@ -296,7 +296,7 @@ abstract class _StateModel extends StateModel {
   @override
   int get totalSWSeconds;
   @override // For timer
-  bool get isTimerStart2;
+  TimerState get timerState;
   @override
   int get hour;
   @override
@@ -306,7 +306,7 @@ abstract class _StateModel extends StateModel {
   @override // For General
   int get index;
   @override
-  int get volume2;
+  int get volume;
   @override
   bool get isSW;
   @override
