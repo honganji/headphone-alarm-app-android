@@ -80,7 +80,6 @@ class StartButton extends ConsumerWidget {
                     }
                     if (state.timerState == TimerState.start) {
                       stateNotifier.stopTimer();
-                      // stateNotifier.stopAlarm(2);
                       stateNotifier.manageTimerState(TimerState.stop);
                     } else {
                       await stateNotifier.startTimer();

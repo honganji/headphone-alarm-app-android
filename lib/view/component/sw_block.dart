@@ -24,8 +24,7 @@ class SWBlock extends ConsumerWidget {
           Radius.circular(20),
         ),
       ),
-      child: state.swState == StopWatchState.start ||
-              state.swState == StopWatchState.stop
+      child: state.swState != StopWatchState.reset
           ? Text(
               stateNotifier.selectTime(time).toString().padLeft(2, "0"),
               style: const TextStyle(

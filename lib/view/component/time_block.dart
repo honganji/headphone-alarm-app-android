@@ -6,13 +6,14 @@ import 'package:headphone_alarm_android_app/view/component/time_wheel.dart';
 import 'package:headphone_alarm_android_app/view_model/state_view_model.dart';
 
 class TimeBlock extends ConsumerWidget {
-  const TimeBlock({required this.time, required this.currentNum, super.key});
+  const TimeBlock({required this.time, required this.initialValue, super.key});
   final Time time;
-  final int currentNum;
+  final int initialValue;
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final state = ref.watch(stateViewModelProvider);
+    final stateNotifier = ref.watch(stateViewModelProvider.notifier);
     return Container(
       alignment: Alignment.center,
       height: 180,
@@ -25,14 +26,14 @@ class TimeBlock extends ConsumerWidget {
       ),
       child: state.timerState == TimerState.start
           ? Text(
-              currentNum.toString().padLeft(2, "0"),
+              stateNotifier.selectTimerTime(time).toString().padLeft(2, "0"),
               style: const TextStyle(
                 fontSize: 50,
               ),
             )
           : TimeWheel(
               time: time,
-              initialNum: currentNum,
+              initialValue: initialValue,
             ),
     );
   }

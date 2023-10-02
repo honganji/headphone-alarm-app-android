@@ -8,11 +8,13 @@ class AlarmStopButton extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
+    final state = ref.watch(stateViewModelProvider);
     final stateNotifier = ref.watch(stateViewModelProvider.notifier);
     return ElevatedButton(
       onPressed: () async {
-        // stateNotifier.stopAlarm(1);
-        stateNotifier.stopSWAlarm();
+        state.isSW
+            ? stateNotifier.stopSWAlarm()
+            : stateNotifier.stopTimerAlarm();
       },
       child: const Text(
         "Stop Alarm",

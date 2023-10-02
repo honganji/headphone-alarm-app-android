@@ -60,7 +60,6 @@ class StateViewModel extends StateNotifier<StateModel> {
       (Timer timer) {
         setTotalSWSeconds(0, 0, state.totalSWSeconds - 1);
         checkIfSWFinished();
-        print(state.totalSWSeconds);
       },
     );
     if (state.swState != StopWatchState.ringing) {
@@ -77,11 +76,17 @@ class StateViewModel extends StateNotifier<StateModel> {
       (Timer timer) {
         setTotalSWSeconds(0, 0, state.totalSWSeconds - 1);
         checkIfSWFinished();
-        print(state.totalSWSeconds);
       },
     );
     if (state.swState != StopWatchState.ringing) {
       manageSWState(StopWatchState.start);
+    }
+  }
+
+  void checkIfSWFinished() {
+    if (state.totalSWSeconds == 0) {
+      manageSWState(StopWatchState.ringing);
+      _timerSW.cancel();
     }
   }
 
@@ -99,14 +104,6 @@ class StateViewModel extends StateNotifier<StateModel> {
   Future<void> resetSW() async {
     await Alarm.stop(1);
     manageSWState(StopWatchState.reset);
-  }
-
-  void checkIfSWFinished() {
-    if (state.totalSWSeconds == 0) {
-      manageSWState(StopWatchState.ringing);
-      _timerSW.cancel();
-      print("Timer is up!");
-    }
   }
 
   void setTotalSWSeconds(int hour, int minute, int second) {
@@ -148,35 +145,26 @@ class StateViewModel extends StateNotifier<StateModel> {
   // For Timer
   Future<void> startTimer() async {
     if (state.timerState == TimerState.stop) {
-      await setSWAlarm();
+      await setTimerAlarm();
     }
     _timerTimer = Timer.periodic(
       const Duration(seconds: 1),
       (Timer timer) {
-        if (state.timerState == TimerState.start &&
-            state.totalTimerSeconds > 0) {
+        if (state.totalTimerSeconds > 0) {
           state = state.setTotalTimerSeconds(state.totalTimerSeconds - 1);
+          checkIfTimerFinished();
         }
       },
     );
-    await checkIfTimerFinished();
   }
 
-  Future<void> checkIfTimerFinished() async {
-    if (state.totalTimerSeconds == 0) {
+  void checkIfTimerFinished() {
+    if (state.totalTimerSeconds == 1) {
       //TODO call alarm function and change swState
       manageTimerState(TimerState.ringing);
       print("The time has come");
       _timerTimer.cancel();
-      print(await Alarm.isRinging(1));
-      do {
-        print("Ring Ring Ring");
-      } while ((await Alarm.isRinging(1)));
     }
-  }
-
-  void stopTimer() {
-    _timerTimer.cancel();
   }
 
   void setTotalTimerSeconds() {
@@ -197,6 +185,28 @@ class StateViewModel extends StateNotifier<StateModel> {
 
   void setMinute(int minute) {
     state = state.setMinute(minute);
+  }
+
+  int selectTimerTime(Time time) {
+    switch (time) {
+      case Time.hour:
+        return state.hour;
+      case Time.minute:
+        return state.minute;
+      default:
+        return 0;
+    }
+  }
+
+  Future<void> stopTimerAlarm() async {
+    await Alarm.stop(2);
+    manageTimerState(TimerState.stop);
+  }
+
+  Future<void> stopTimer() async {
+    _timerSW.cancel();
+    await Alarm.stop(2);
+    manageTimerState(TimerState.stop);
   }
 
   void manageTimerState(TimerState timerState) {

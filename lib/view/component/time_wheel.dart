@@ -4,9 +4,9 @@ import 'package:headphone_alarm_android_app/enum/time_class.dart';
 import 'package:headphone_alarm_android_app/view_model/state_view_model.dart';
 
 class TimeWheel extends ConsumerStatefulWidget {
-  const TimeWheel({required this.time, required this.initialNum, super.key});
+  const TimeWheel({required this.time, required this.initialValue, super.key});
   final Time time;
-  final int initialNum;
+  final int initialValue;
 
   @override
   ConsumerState<TimeWheel> createState() => _TimeWheelState();
@@ -18,7 +18,7 @@ class _TimeWheelState extends ConsumerState<TimeWheel> {
   @override
   void initState() {
     super.initState();
-    _controller = FixedExtentScrollController(initialItem: widget.initialNum);
+    _controller = FixedExtentScrollController(initialItem: widget.initialValue);
   }
 
   @override
@@ -37,8 +37,6 @@ class _TimeWheelState extends ConsumerState<TimeWheel> {
             ? stateNotifier.setHour(index)
             : stateNotifier.setMinute(index);
         stateNotifier.setTotalTimerSeconds();
-        print(state.hour);
-        print(state.minute);
       },
       controller: _controller,
       children: List.generate(

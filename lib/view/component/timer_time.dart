@@ -23,7 +23,7 @@ class TimerTime extends ConsumerWidget {
           ),
           TimeBlock(
             time: Time.hour,
-            currentNum: state.hour,
+            initialValue: state.hour,
           ),
           const Text(
             ":",
@@ -34,7 +34,7 @@ class TimerTime extends ConsumerWidget {
           ),
           TimeBlock(
             time: Time.minute,
-            currentNum: state.minute,
+            initialValue: state.minute,
           ),
           const SizedBox(
             width: 0,
