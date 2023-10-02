@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:headphone_alarm_android_app/enum/stopwatch_state.dart';
+import 'package:headphone_alarm_android_app/enum/timer_state.dart';
 import 'package:headphone_alarm_android_app/view_model/state_view_model.dart';
 
 class StartButton extends ConsumerWidget {
@@ -26,19 +27,26 @@ class StartButton extends ConsumerWidget {
           state.isSW
               // start button for stop watch
               ? ElevatedButton(
-                  onPressed: () {
+                  onPressed: () async {
+                    print(state.swState);
                     if (state.totalSWSeconds == 0) {
                       ScaffoldMessenger.of(context).showSnackBar(const SnackBar(
                         content: Text("Set the time"),
                       ));
                       return;
                     }
-                    if (state.swState == StopWatchState.start) {
-                      stateNotifier.manageSWState(StopWatchState.stop);
-                      stateNotifier.stopSW();
-                    } else {
-                      stateNotifier.manageSWState(StopWatchState.start);
-                      stateNotifier.startSW();
+                    switch (state.swState) {
+                      case StopWatchState.reset:
+                        await stateNotifier.startSW();
+                        break;
+                      case StopWatchState.start:
+                        await stateNotifier.stopSW();
+                        break;
+                      case StopWatchState.stop:
+                        await stateNotifier.restartSW();
+                        break;
+                      default:
+                        break;
                     }
                   },
                   style: ElevatedButton.styleFrom(
@@ -56,19 +64,19 @@ class StartButton extends ConsumerWidget {
                 )
               // start button for timer
               : ElevatedButton(
-                  onPressed: () {
+                  onPressed: () async {
                     if (state.totalTimerSeconds <= 0) {
                       ScaffoldMessenger.of(context).showSnackBar(const SnackBar(
                         content: Text("Set future time"),
                       ));
                       return;
                     }
-                    if (state.isTimerStart2) {
-                      stateNotifier.manageTimerState(false);
+                    if (state.timerState == TimerState.start) {
                       stateNotifier.stopTimer();
+                      stateNotifier.manageTimerState(TimerState.stop);
                     } else {
-                      stateNotifier.manageTimerState(true);
-                      stateNotifier.startTimer();
+                      await stateNotifier.startTimer();
+                      stateNotifier.manageTimerState(TimerState.start);
                     }
                   },
                   style: ElevatedButton.styleFrom(
@@ -76,10 +84,13 @@ class StartButton extends ConsumerWidget {
                     backgroundColor: Colors.transparent,
                     shadowColor: Colors.transparent,
                     shape: const RoundedRectangleBorder(
-                        borderRadius: BorderRadius.all(Radius.circular(50))),
+                      borderRadius: BorderRadius.all(
+                        Radius.circular(50),
+                      ),
+                    ),
                   ),
                   child: Text(
-                    state.isTimerStart2 ? "Stop" : "Start",
+                    state.timerState == TimerState.start ? "Stop" : "Start",
                     style: const TextStyle(
                         fontSize: 40, letterSpacing: 3.0, color: Colors.black),
                   ),

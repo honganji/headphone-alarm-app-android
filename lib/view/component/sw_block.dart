@@ -1,22 +1,19 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:headphone_alarm_android_app/enum/stopwatch_state.dart';
 import 'package:headphone_alarm_android_app/enum/time_class.dart';
 import 'package:headphone_alarm_android_app/view/component/sw_wheel.dart';
+import 'package:headphone_alarm_android_app/view_model/state_view_model.dart';
 
-class SWBlock extends StatelessWidget {
-  const SWBlock(
-      {required this.time,
-      required this.isStart,
-      required this.currentNum,
-      required this.changeNumFun,
-      super.key});
+class SWBlock extends ConsumerWidget {
+  const SWBlock({required this.time, required this.initialValue, super.key});
   final Time time;
-  final StopWatchState isStart;
-  final int currentNum;
-  final void Function(int, int, int) changeNumFun;
+  final int initialValue;
 
   @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context, WidgetRef ref) {
+    final state = ref.watch(stateViewModelProvider);
+    final stateNotifier = ref.watch(stateViewModelProvider.notifier);
     return Container(
       alignment: Alignment.center,
       height: 180,
@@ -27,16 +24,16 @@ class SWBlock extends StatelessWidget {
           Radius.circular(20),
         ),
       ),
-      child: isStart == StopWatchState.start || isStart == StopWatchState.stop
+      child: state.swState != StopWatchState.reset
           ? Text(
-              currentNum.toString().padLeft(2, "0"),
+              stateNotifier.selectTime(time).toString().padLeft(2, "0"),
               style: const TextStyle(
                 fontSize: 50,
               ),
             )
           : SWWheel(
               time: time,
-              initialNum: currentNum,
+              initialValue: initialValue,
             ),
     );
   }

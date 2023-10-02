@@ -4,9 +4,9 @@ import 'package:headphone_alarm_android_app/enum/time_class.dart';
 import 'package:headphone_alarm_android_app/view_model/state_view_model.dart';
 
 class SWWheel extends ConsumerStatefulWidget {
-  const SWWheel({required this.time, required this.initialNum, super.key});
+  const SWWheel({required this.time, required this.initialValue, super.key});
   final Time time;
-  final int initialNum;
+  final int initialValue;
 
   @override
   ConsumerState<SWWheel> createState() => _SWWheelState();
@@ -18,7 +18,7 @@ class _SWWheelState extends ConsumerState<SWWheel> {
   @override
   void initState() {
     super.initState();
-    _controller = FixedExtentScrollController(initialItem: widget.initialNum);
+    _controller = FixedExtentScrollController(initialItem: widget.initialValue);
   }
 
   @override
