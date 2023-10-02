@@ -1,10 +1,8 @@
-import 'package:alarm/alarm.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:headphone_alarm_android_app/routes.dart';
 
 void main() async {
-  // await Alarm.init();
   runApp(const ProviderScope(child: MyApp()));
 }
 

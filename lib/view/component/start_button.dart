@@ -48,13 +48,6 @@ class StartButton extends ConsumerWidget {
                       default:
                         break;
                     }
-                    // if (state.swState == StopWatchState.start) {
-                    //   stateNotifier.stopSW();
-                    //   stateNotifier.manageSWState(StopWatchState.stop);
-                    // } else {
-                    //   await stateNotifier.startSW();
-                    //   stateNotifier.manageSWState(StopWatchState.start);
-                    // }
                   },
                   style: ElevatedButton.styleFrom(
                     fixedSize: const Size(230, 90),
@@ -91,7 +84,10 @@ class StartButton extends ConsumerWidget {
                     backgroundColor: Colors.transparent,
                     shadowColor: Colors.transparent,
                     shape: const RoundedRectangleBorder(
-                        borderRadius: BorderRadius.all(Radius.circular(50))),
+                      borderRadius: BorderRadius.all(
+                        Radius.circular(50),
+                      ),
+                    ),
                   ),
                   child: Text(
                     state.timerState == TimerState.start ? "Stop" : "Start",

@@ -23,7 +23,6 @@ class _TimeWheelState extends ConsumerState<TimeWheel> {
 
   @override
   Widget build(BuildContext context) {
-    final state = ref.watch(stateViewModelProvider);
     final stateNotifier = ref.watch(stateViewModelProvider.notifier);
     return ListWheelScrollView(
       physics: const FixedExtentScrollPhysics(),

@@ -140,7 +140,6 @@ class StateViewModel extends StateNotifier<StateModel> {
     );
     await Alarm.set(alarmSettings: alarmSettings);
   }
-  /*--------------------------------------------------------------------*/
 
   // For Timer
   Future<void> startTimer() async {
@@ -160,9 +159,7 @@ class StateViewModel extends StateNotifier<StateModel> {
 
   void checkIfTimerFinished() {
     if (state.totalTimerSeconds == 1) {
-      //TODO call alarm function and change swState
       manageTimerState(TimerState.ringing);
-      print("The time has come");
       _timerTimer.cancel();
     }
   }

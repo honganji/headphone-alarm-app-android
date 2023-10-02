@@ -16,6 +16,8 @@ class Timer extends ConsumerWidget {
     return Column(
       children: [
         const TimerTime(),
+        // const Sound(itemTitle: "Sound"),
+        // const Volume(itemTitle: "Volume"),
         const SizedBox(
           height: 200,
         ),
